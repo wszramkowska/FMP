@@ -5,51 +5,31 @@ Wiktoria Szramkowska
 2106125
 
 
-The theme for this project is 'Alive' so I came up with a couple of initial ideas. One of the ideas was a simplified farming game where you would keep plants or crops alive. My second idea was an fps style game where you would have to continuously kill enemies in order to stay alive. However, since it was my first time making a game in Unreal, I thought these might be a bit too complicated, especially the farming game. I decided to go for a game where the player would be stuck in a building with monsters, trying to stay alive whilst looking for the exit.
+
+I really enjoy indie horror and a first person horror game was an obvious choice for my FMP, I have been building the skills I need for this project during the last 2 years of my Games Development course. There is a lot of different directions to go when it comes to indie horror, but I have a few ideas I am keen on implementing such as, a focus on atmospheric horror and an enemy AI which seems to behave intelligently. I first want to do some research to be better informed on what I really want to do with my game and the key mechanics I want to implement. 
 
 ## Research
 
-### What sources or references have you identified as relevant to this task?
 
 
 
-I wanted to look at some video games to get inspiration for my game, specifically some stealth or chase scenes in horror games. A couple games that came to mind were Outlast and Resident Evil Village which have many tense chase/stealth scenes. 
+I wanted to look at some video games to get inspiration for my game, specifically horror games that have one "big bad" enemy. Some games that come to mind included Alien: Isolation (Creative Assembly, 2014) and Amnesia: The Bunker (Frictional Games, 2023)
 I will of course also be looking at Unreal documentation throughout my project, when I feel stuck with blueprints or anything else, as documentation is a good, official and up to date source.
 For my core mechanics I will try to find video tutorials to help me.
 
 #### Sources
 
-#### Outlast
+#### Alien: Isolation
 
-Outlast is a first-person survival horror game developed and published by Red Barrels. One of the scariest parts of the game for me personally was the sewer section where you are trapped with an enemy. The enemy is Chris Walker, a huge variant who pursues the main character relentlessly. I have narrowed down the 3 things that make this segment of the game so terrifying, and I hope I can implement some of this in my own game.
+Alien: Isolation is a survival horror game published in 2014 and developed by Creative Assembly. I chose this game because of the anatagonist, the Xenomorph, which remains a benchmark in AI design over a decade later. The developers are able to create the illusion of an intellifent enemy that learns from the player through clever use of complex behaviour trees and a two tier system for the AI (aetos, 2025). I want to use what I have learned to create my own complex enemy that appears to learn from and adapt to the player. 
 
-[Outlast Full Chris Walker Sewer Scene](https://www.youtube.com/watch?v=xkJDQPPZA7c&ab_channel=Mitsuownes)
+[How Does The Alien Work Off Camera Alien Isolation](https://youtu.be/MNMAduVsqhQ?si=Xm99RoZNNz3GOLOj)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xkJDQPPZA7c?si=YwNpXNClvKvzmNCd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-(OUTLAST (Horror) Full Chris Walker Sewer Chase SCENE | PS5 Gameplay, 2022)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MNMAduVsqhQ?si=Xm99RoZNNz3GOLOj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-
-
-##### Audio
-- You hear the rattle of chains before you even see Chris Walker coming, immediately making the player tense in anticipation of getting caught.
-- Music ramps up when getting chased, which gives a feeling of something being constantly behind you, however being too afraid to look back and slow yourself down.
-
-##### Trapped
-- The player falls into this sewer and is stuck down there with Chris Walker. Since the area is not massive you feel like he is constantly on your tail.
-- The sewer can be difficult to navigate which adds further feeling of entrapment as you struggle to find the exit.
-
-##### Lighting 
-- It is very dark in this section, especially when you drop down to the lower level of the sewer. This makes it hard to spot Chris Walker.
-- Additionally humans have an innate fear of the dark, which is amplified by the knowledge of a dangerous enemy being there with us.
-- The player uses a camera which has night vision, but the battery can drain quickly so there is the additional fear of losing what vision you do have.
-
-##### No weapons
-- A key feature in the Outlast series is a lack of weapons. This is terrifying when facing enemies out to kill you.
-- Player has no defense and can therefore more easily empathise with the fear of the game protagonist. 
 
 <br>
 
-Overall I think I can learn a lot from this section of the game in creating a tense atmosphere which will elevate my project as I am aiming for a horror feel. Through both my research and my own gameplay I think many players agree this is a successfull example of horror done right.
 
 #### Unreal Documentation
 
@@ -413,40 +393,14 @@ I found a video by RubaDev on how to randomize actor spawn locations and adapted
 
 ## Bibliography
 
-Basic Navigation in Unreal Engine | Unreal Engine 5.5 Documentation | Epic Developer Community (s.d.) At: https://dev.epicgames.com/documentation/en-us/unreal-engine/basic-navigation-in-unreal-engine (Accessed  03/12/2024).
+aetos (2025) The Illusion of Intelligence: A Technical Breakdown of Alien: Isolation’s AI. At: https://medium.com/@aetosdios27/the-illusion-of-intelligence-a-technical-breakdown-of-alien-isolations-ai-b2d7c9927d02 (Accessed  11/12/2025).
 
-Creating Widgets in Unreal Engine | Unreal Engine 5.5 Documentation | Epic Developer Community (s.d.) At: https://dev.epicgames.com/documentation/en-us/unreal-engine/creating-widgets-in-unreal-engine (Accessed  06/12/2024).
+How Does The Alien Work Off Camera Alien Isolation (2023) Directed by Slippy Slides. At: https://www.youtube.com/watch?v=MNMAduVsqhQ (Accessed  11/12/2025).
 
-MetaSounds: The Next Generation Sound Sources in Unreal Engine | Unreal Engine 5.5 Documentation | Epic Developer Community (s.d.) At: https://dev.epicgames.com/documentation/en-us/unreal-engine/metasounds-the-next-generation-sound-sources-in-unreal-engine (Accessed  06/12/2024).
+Thompson, T. (2025) Revisiting the AI of Alien: Isolation. At: https://www.aiandgames.com/p/revisiting-alien-isolation (Accessed  11/12/2025).
 
+Alien: Isolation - The Retrospective | AI and Games (2025) Directed by AI and Games. At: https://www.youtube.com/watch?v=LeIkEoHglQQ (Accessed  11/12/2025).
 
-MetaSounds Quick Start | Unreal Engine 5.5 Documentation | Epic Developer Community (s.d.) At: https://dev.epicgames.com/documentation/en-us/unreal-engine/metasounds-quick-start (Accessed  06/12/2024).
-
-Animation Blueprints in Unreal Engine | Unreal Engine 5.5 Documentation | Epic Developer Community (s.d.) At: https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-blueprints-in-unreal-engine (Accessed  06/12/2024).
-
-AI Perception in Unreal Engine | Unreal Engine 5.5 Documentation | Epic Developer Community (s.d.) At: https://dev.epicgames.com/documentation/en-us/unreal-engine/ai-perception-in-unreal-engine (Accessed  06/12/2024).
-
-Unreal Engine 5 Health and Damage System Tutorial [2023] (2023) At: https://www.youtube.com/watch?v=vO1i9Wcx4Xc (Accessed  03/11/2024).
-
-Unreal Engine 5 AI Patrol and Chase Tutorial (2023) At: https://www.youtube.com/watch?v=lbqZS-cgcQs (Accessed  03/11/2024).
-
-AI Attack Tutorial - Unreal Engine 5.2 (2023) At: https://www.youtube.com/watch?v=N7CqOJNeAyU (Accessed  05/12/2024).
-
-Door And Key System | How To Open A Locked Door With A Key In Unreal Engine 5 (Tutorial) (2023) At: https://www.youtube.com/watch?v=Bcle9sSS4Oo (Accessed  05/12/2024).
-
-How To Create A Main Menu - Unreal Engine 5 Tutorial (2022) At: https://www.youtube.com/watch?v=kumZj_mov58 (Accessed  05/12/2024).
-
-How To Light Interiors In Unreal Engine 4 & 5 (Tutorial) (2022) At: https://www.youtube.com/watch?v=PKjnYulklNA (Accessed  05/12/2024).
-
-OUTLAST (Horror) Full Chris Walker Sewer Chase SCENE | PS5 Gameplay (2022) At: https://www.youtube.com/watch?v=xkJDQPPZA7c (Accessed  05/12/2024).
-
-How To Randomize Actor Spawn Locations - Unreal Engine 5 (2024) At: https://www.youtube.com/watch?v=2O_EESpvYgc (Accessed  04/12/2024).
-
-How to Make Footsteps with Metasounds in Unreal Engine 5 (2023) At: https://www.youtube.com/watch?v=Zv8aRutdflQ (Accessed  03/12/2024).
-
-How to Make a Widget Notification in Unreal Engine 5 (2024) At: https://www.youtube.com/watch?v=pdD_Lyo2HeA (Accessed  03/12/2024).
-
-How To Make A 3D Interaction Prompt In Unreal Engine 5 (Tutorial) (2023) At: https://www.youtube.com/watch?v=kB1_qxNUi9Q (Accessed  03/12/2024).
 
 
 
