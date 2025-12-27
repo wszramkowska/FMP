@@ -33,91 +33,46 @@ Alien: Isolation is a survival horror game published in 2014 and developed by Cr
 
 #### Unreal Documentation
 
-Another source I will be regularly going to throughout my project is the Unreal Documentation as I believe it has some of the most accurate and up to date information.There are multiple that I will be using depending on the specific mechanics I am trying to implement, one such documentation is the AI Perception system (AI Perception in Unreal Engine | Unreal Engine 5.5 Documentation | Epic Developer Community, s.d.) which I used to help create my enemy AI.
+Another source I will be regularly going to throughout my project is the Unreal Documentation as I believe it has some of the most accurate and up to date information. There are multiple that I will be using depending on the specific mechanics I am trying to implement, one such documentation is the AI Perception system (AI Perception in Unreal Engine | Unreal Engine 5.5 Documentation | Epic Developer Community, s.d.) which I used to help create my enemy AI.
 
-Key components of AI Perception:
+Specifically I looked at AI Hearing and AI Sight. Hearing is handled by calling a 'Report Noise Event' which simulates the NPC hearing a sound. Sight alerts the NPC when player or an object enters the sight radius. 
 
-- AI Perception Component: A component that defines which senses to use, how to configure them, and how the AI should respond to detected stimuli.
-- Senses: Different types of sensory inputs, such as Sight, Hearing, Damage, and Touch, are configurable with various parameters like detection radius, range, and affiliation (e.g., enemies, neutrals, or friendlies).
-- Stimuli Sources: Actors in the game world that emit stimuli (e.g., sounds, visual signals) which are registered by the AI to trigger perception updates.
-- Events: Actions triggered by sensory updates, such as “On Perception Updated” and “On Target Perception Info Updated,” allowing AI logic to react to the perceived stimuli.
-- Debugging: The AI Perception Debugging tools help visualize and troubleshoot perception events in real time during gameplay.
+I will also be using Behaviour Trees to manage the behaviour of my enemy AI. Although I have made games in Unreal Engine before, I actually have not used Behaviour Trees before so I will be frequently referring to documentation.
 
-This was very helpful to teach me a bit about the possibilites of AI within my game. Particularly the the sight radius sensing which gives my enemy a 'visual radius' for detecting the player. I then incorporated this logic with my 'Chase' blueprints, so my enemy would detect the player and then move to them. I would also like to implement the hearing sense if I have enough time, so my enemy can also hear the player and chase them. Although this documentation provides a lot of information, a common thing I have noticed is that there tends to be an overwhelming amount of information which can be hard to navigate. The Unreal Documentation has a lot of generasl knowledge but I can only really get specific help for my project when I come to my task. For example if I am working on the enemy AI and I get stuck on how to make it notice the player, I can then look up the relevant information. 
+I started with learning the basics by reading the Quick Start Guide. (Behavior Tree in Unreal Engine - Quick Start Guide | Unreal Engine 5.7 Documentation | Epic Developer Community, s.d.) which explains how to create an enemy AI in Unreal Engine that patrols the level, detects the player using AI Perception, and switches to chasing them when they are seen. It covers setting up an AI Controller, Blackboard, and Behavior Tree with tasks for patrolling and chasing, using decorators to control state changes based on line of sight. When the AI loses sight of the player for a set time, it stops chasing and returns to patrolling, demonstrating a complete, reactive AI loop built with Blueprints.
+
+Overall I think documentation is incredibly useful and as it is written on the official site, the information is incredibly accurate and is updated frequently. 
+
+<br>
+
+#### A survey of Behavior Trees in robotics and AI
+
+I looked at academic papers, specifically about Behaviour trees to understand the underlying structure, strengths and limitations of Behaviour Trees. *A Survey of Behavior Trees in Robotics and AI* provided me with a strong academic foundation on understanding Behaviour Trees beyond engine-specific tutorials. The paper covers behavior tree theory, comparisons with other AI approaches such as finite state machines, and practical applications, making it particularly valuable for implementing complex AI behaviour correctly (Iovino et al., 2022). 
+
+The source is reliable because it is written by established researchers and based on peer-reviewed academic work, providing a strong theoretical foundation for behaviour trees that are still widely used in Unreal Engine. However, it may be slightly outdated, as it does not cover recent engine-specific features or workflows, reflecting how quickly game technology evolves.
+
 
 
 
 
 ## Implementation
 
-### What was the process of completing the task? What influenced your decision making?
 
 
 
 #### Planning 
-Due to my lack of experience with Unreal I did not want to set myself many aspirational goals which I then might not be able to complete. Instead I kept my mechanics simple and aimed for polish.
 
-- Trapped in a building
-- Avoid enemies
-- Find the exit 
+My first goal is to make a prototype which can prove my game idea will work and is executable. I set out a few simple goals to achieve in this stage including a simplified version of the final AI (detects sound, sees player, chases player, patrols), and a working light system. These cover the core mechanics in my game. Other features such as player health and damage, crouching and sprinting, I have already done in previous projects so I am confident I will be able to implement them. 
 
 #### Health and Damage System 
-The first thing I did in my project was create a health system. This is because it is one of the only things I am familiar with in Unreal due to some University tutorials on it. I used the third person template, so I did the health system in the BP_ThirdPersonCharacter.
 
-- Made a health bar widget blueprint, designes using a progress bar.
-
-
-<iframe src="https://blueprintue.com/render/s0uto83x/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 1. Blueprints for updating the health bar* 
-
-- I used AnyDamage and took current health away from my max health. When health is 0 or below the player will die.
-
-<iframe src="https://blueprintue.com/render/3en7eame/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 2. Blueprints for player taking damage*
-
-- For my player death logic I disabled movement, added a game over widget and set the game to paused.
-
-<iframe src="https://blueprintue.com/render/06o1thq7/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 3. Blueprints for player death*
 
 <br>
 
-#### Enemy AI Chase, Patrol, Deal Damage
-I knew I wanted my game to have enemies so I tackled enemy AI next. I found a good youtube video by Pixel helmet (Unreal Engine 5 AI Patrol and Chase Tutorial, 2023) which showcased how to create an enemy ai which patrols and chases the player upon seeing them.
+#### Enemy AI 
 
-- I made a blueprint for my enemy.
-- I used NavMeshBoundsVolume to determine the area my enemy ai would work within.
-- I gave my enemy a PawnSensing component, which allowed me to choose its sight radius.
-- Initially I used a mannequin from the Unreal starter content, but later switched my static mesh to a zombie I found on Mixamo.
-- My patrol logic got a random location within the Nav mesh bounds and moved the ai to that location.
+My enemy will be 
 
-<iframe src="https://blueprintue.com/render/iqmhoil-/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 4. Blueprints for enemy patrol*
-<br>
-- My chase logic uses On See Pawn from the PawnSensing component
-- When the enemy sees the player I play a running animation and increase speed.
-- Then I move the ai to the player location.
-- If the player is hidden for 2 seconds, movement speed and animation is set back to walking.
-- If the ai successfully reaches the player, it will attack.
-
-<iframe src="https://blueprintue.com/render/ibymjtv8/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 5. Blueprints for enemy chase*
-
-- For my enemy to deal damage, I used a sphere collision component.
-- I attached the sphere to the hand of my zombie as that is what it will be using to hit the player.
-- If the player is within the range of this sphere, they will take damage.
-
-<iframe src="https://blueprintue.com/render/45jkgj6e/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 6. Blueprints for enemy deal damage*
-
-[AI Test](https://www.youtube.com/watch?v=_tasIn8A2RQ&ab_channel=WSzramkowska)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_tasIn8A2RQ?si=jSHXRMn-J7314x3o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <br>
  
@@ -350,46 +305,15 @@ I found a video by RubaDev on how to randomize actor spawn locations and adapted
 
 
 
-[Alive Below Gameplay Trailer](https://www.youtube.com/watch?v=kEkBX7NXY7w&t=89s&ab_channel=WSzramkowska)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kEkBX7NXY7w?si=5UvN41bhssKIN486" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-
-
-[Alive Below Build](https://squlddy.itch.io/alive-below)
-
-
-<iframe frameborder="0" src="https://itch.io/embed/3156461" width="552" height="167"><a href="https://squlddy.itch.io/alive-below">Alive Below by squiddy</a></iframe>
-
-
-[Technical Art Github Repository](https://github.com/wszramkowska/TechnicalArt)
 
 
 ## Critical Reflection
 
-### What did or did not work well and why?
 
-#### Improvements
-- My enemy ai is very simple, I think a more complex ai could benefit the gameplay. For example adding hearing or adjusting the sight radius to have a more realistic feel. When walking behind the enemy, despite being very close, it won't really notice you unless it turns around.
-- I had trouble with the asset pack and my fire particle which could shine through walls in certain areas.
-- Time management is a key element for this type of project. Had I been a bit more organised I could have achieved even more and really pushed for complete polish. Since I had no prior knowledge I spent a lot of time reading documentation, watching tutorials and fixing my code. Although this is a normal part of development, as my skills improve I can put more time into my game.
-- I used an unstructured method for my blueprints. I think this was okay for my project as it is quite small scale, but I would like to use other methods such as behaviour trees in the future so I can more easily manage bigger projects.
 
-#### What went well
-- I actually like the gameplay loop I created even though it is quite simple. Earlier on I had some doubts it would be too boring but after receiving feedback and making keys spawn in random location I think it really elevated the gameplay and gave my game replayability.
-- I think I captured a good horror atmosphere through sounds, lighting and level design. When asking for player feedback, many said they felt the tension whilst playing the game.
-- I am proud of my research and learning. I was able to implement tutorials and documentation into my own project. It didn't always work but I managed to use problem solving to adapt it and fix it.
-- My mechanics are suitable for my genre of game. They work well together, avoiding the enemy, finding the key, escaping. 
 
-### What would you do differently next time?
 
-- Next time I would like to use a method other than unstructured, such as behaviour trees. I hope this will help me with managing my game. 
-- I would like to organise my folders better. I made a start on this but I think there is a lot of room for improvement. 
-- I think it would be a great addition to make the enemy able to hear the player. It could create more varied gameplay. Along with a crouch this could be a fun mechanic to make the game more stealth like.
-- Spend a bit more time on menus, maybe add a settings option to give the player more control over the game. My PC is not the best, so it would lag quite a bit on higher settings which I think reflects in the trailer. I would like to add options to lower the graphics which would fix situations like that.
-- Settings could also add accessibility with things like subtitles, even if it is just for the enemy's footsteps in the case of my game.
-- I would love to add a cinematic sequence to create a jumpscare when the enemy kills the player.
+
 
 ## Bibliography
 
@@ -401,29 +325,16 @@ Thompson, T. (2025) Revisiting the AI of Alien: Isolation. At: https://www.aiand
 
 Alien: Isolation - The Retrospective | AI and Games (2025) Directed by AI and Games. At: https://www.youtube.com/watch?v=LeIkEoHglQQ (Accessed  11/12/2025).
 
+Behavior Tree in Unreal Engine - Quick Start Guide | Unreal Engine 5.7 Documentation | Epic Developer Community (s.d.) At: https://dev.epicgames.com/documentation/en-us/unreal-engine/behavior-tree-in-unreal-engine---quick-start-guide (Accessed  27/12/2025).
+
+Iovino, M., Scukins, E., Styrud, J., Ögren, P. and Smith, C. (2022) 'A survey of Behavior Trees in robotics and AI' In: Robotics and Autonomous Systems 154 p.104096.
+
+
 
 
 
 ## Declared Assets
 
-Medieval Dungeon - Infuse Studio (s.d.) At: https://www.fab.com/listings/c13bd0dc-ac4d-4595-b284-f81386b2e6ef (Accessed 05/12/2024)
-
-Zombie breathing | Huminaatio (s.d.) At: https://pixabay.com/sound-effects/zombie-breathing-54693/ (Accessed  05/12/2024).
-
-Zombie Screaming | Alex_Jauk (s.d.) At: https://pixabay.com/sound-effects/zombie-screaming-207590/ (Accessed  05/12/2024).
-
-Boys sneaker, single footstep on concrete 5 Sound Effect - Download FREE - ZapSplat (s.d.) At: https://www.zapsplat.com/music/boys-sneaker-single-footstep-on-concrete-5/ (Accessed  05/12/2024).
-
-Man breathing, open mouth, medium speed and heavy Sound Effect - Download FREE - ZapSplat (s.d.) At: https://www.zapsplat.com/music/man-breathing-open-mouth-medium-speed-and-heavy/ (Accessed  05/12/2024).
-
-Dungeon ambience, cold dark and eerie droning tone with howling wind outside and water drips, could also be cave Sound Effect - Download FREE - ZapSplat (s.d.) At: https://www.zapsplat.com/music/dungeon-ambience-cold-dark-and-eerie-droning-tone-with-howling-wind-outside-and-water-drips-could-also-be-cave/ (Accessed  05/12/2024).
-
-Horror Background Atmosphere #11 | Royalty-free Music (s.d.) At: https://pixabay.com/music/mystery-horror-background-atmosphere-11-240870/ (Accessed  05/12/2024).
-
-blackcraft - Search - dafont.com (s.d.) At: https://www.dafont.com/search.php?q=blackcraft&text=Alive+Below (Accessed  05/12/2024).
-
-Mixamo:
-Zombie character mesh and animations
 
 Used to assist in finding and summarising research material:
 Chat GPT
