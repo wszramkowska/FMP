@@ -70,9 +70,6 @@ The second stage will increase believability by adding variability and tactics: 
 
 The third stage is to elevate the AI to a systemic predator using utility-based decision-making, long-term memory, and adaptive learning. The monster shapes the environment, anticipates player habits, controls territory, and optimizes performance so it feels intelligent, unpredictable, and oppressive rather than omniscient.
 
-#### Health and Damage System 
-
-
 <br>
 
 #### Enemy AI 
@@ -80,7 +77,6 @@ The third stage is to elevate the AI to a systemic predator using utility-based 
 My enemy is a core part of the game, most of the tense atmosphere will come from the fact the player is stuck in the house with this monster. I want to build a strong foundation for my enemy before diving into more complex features, so for the prototype I completed stage one of my plan for the AI.
 
 The AI prototype was brought to life with a monster that patrols the house, reacts to sound and light, and hunts the player if its aggression grows too high—laying the foundation for an Alien-Isolation-style intelligent monster. The implementation involved creating a monster pawn with movement and perception components, an AI controller with a blackboard, and a behavior tree defining Patrol → Investigate → Hunt logic. Perception events update the blackboard, while light triggers increase aggression, causing more aggressive hunting behavior. After tuning patrol points, wait times, and sensory ranges, the monster exhibits basic but believable sensory-driven behavior, giving a solid base for more advanced AI in later stages.
-
 
 <br>
 
@@ -94,86 +90,31 @@ Although this isn't the final map, I did build a small version with lots of room
 
 <br>
 
-
 #### Menus 
 
-I created a simple Main Menu 
+I created a simple Main Menu to start and quit the game. This was enough for my prototype but during further development I will be adding a pause menu and an options menu.
 
 #### Feedback
-I asked family, friends and colleagues to test out my game and give me their feedback. 
 
-Key points from feedback:
-- Game is scary, when the enemy is near there is a good level of tension
-- Enemy ai could be more advanced e.g. the enemy can hear the player
-- Lighting looks good and effective for the genre
-- Once you find the key and escape, there is not much incentive to play again as you know where the key is so the game feels easier
-- Map is good, not too big but still able to get away from the enemy
-- Menus could look more interesting
-- There are no instructions for what to do or how to play 
+I asked family, friends and colleagues to test out my game and give me their feedback. Additionally I created a survey on Google Docs and included the QR code link in my game Main Menu. This allows me to collect more data and ask both specific and broad questions to help improve my game. 
 
-At this point I had limited time left to polish my project so I picked a couple points that I thought were very important and would greatly improve my game, but were still doable within the remaining time frame.
+As this is just a prototype, feedback has been quite positive with players seeing the game potential. However, atmosphere plays a key part in horror games and is difficult to judge in the prototype phase as there are no visual elements, no house clutter and no post-processing to help sell the horror. 
 
-"No incentive to replay"
-I wanted my game to be enjoyable for multiple runs and not just a one shot as that might mean the player doesn't even see the entire environment or potentially might not even meet the enemy if very lucky. To solve this issue I decided I would spawn my key in a random location from a set of predetermined locations. This means finding the key is not enough, you actually have to escape as well because on your next run it might be in a different location. It also encourages exploration.
+Now that I have key mechanics down I want to add some visuals so I can more accurately assess if the monster is actually scary when the player crosses paths with it. I also want to add some fog to reduce visibility and give that creepy atmosphere, building further tension.
 
-"No instructions"
-I think players can get easily frustrated when the objective of the game is not clear. I do not want players to get discouraged and drop my game so I decided to add a simple quest style bar in the top right which would direct the player. In addition I would add a message to the door saying something like "Press E to open" to make the controls of the game more obvious.
 
-#### Randomly Spawning Key
-I found a video by RubaDev on how to randomize actor spawn locations and adapted this to my blueprints in order to get different spawn locations for my key each time the level starts. 
+### Technical Difficulties
 
-- Set 5 target points where I wanted my key to spawn. I didn't want completely random spawn points as I wanted the locaction of the key to be fair and to make sense within the environment.
-- Referenced these target points in my level blueprint and put them in an array.
-- Got the locations and randomised them using 'random integer in range'
-- Spawned the key
+##### Behaviour Tree
 
-<iframe src="https://blueprintue.com/render/gfmawe9q/" scrolling="no" allowfullscreen></iframe>
+One technical challenge I encountered was getting the Patrol → Investigate → Hunt sequences to transition correctly. Initially, the monster would get stuck patrolling or investigating and never enter Hunt mode, even when it saw the player. I looked at Unreal Documentation (Unreal Engine Behavior Tree Node Reference: Decorators | Unreal Engine 5.7 Documentation | Epic Developer Community, s.d.) and found the issue was caused by the Behavior Tree not interrupting lower-priority tasks when Hunt conditions were met. To fix this, I removed the aggression decorator, and configured the Decorator Abort rules so that the Hunt sequence could interrupt Patrol or Investigate immediately. This ensured the monster would respond dynamically to the player, creating a functional Patrol → Investigate → Hunt loop.
 
-*Figure 17. blueprints for spawning key in random locations*
+##### Aggression
 
-#### 'Quest' bar
-- I created a widget with a small quest bar in the top right of the screen. I added this to viewport from the BP_Key blueprint.
-- Initially set to 'find the key'
-- Upon player picking up the key I set the text to 'Escape' 
+Another challenge was making the monster react correctly to lights. At first, it either ignored lights or went into Hunt too soon. By adjusting how much lights increased its AggressionLevel and setting proper thresholds in the Behavior Tree, the monster would now investigate lights first and only hunt the player when aggression was high enough. I will have to keep tweaking this as I develop the game and figure out how many rooms and lights there will be. 
 
-<iframe src="https://blueprintue.com/render/nc8-esjh/" scrolling="no" allowfullscreen></iframe>
 
-*Figure 18. blueprints for adding the quest bar to viewport and setting the text after picking up ley*
 
-#### Press 'E' prompt on door
-- I made a widget and attached it to my door blueprint
-- I made the widget visible when the player was within the doors collision box.
-
-<iframe src="https://blueprintue.com/render/kk4k8d5g/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 19. blueprints for interaction prompt*
-
-<br>
-
-### Did you have any technical difficulties? If so, what were they and did you manage to overcome them?
-
-- Did you have any issues completing the task? How did you overcome them?
-
-##### Door
-- opened too quick so I used a lerp node instead of setting my rotation inside of my door timeline 
-- only set relative rotation
-- doors were opening the opposite way so I added a multiply by -1 to the right door
-
-##### Interact prompt
-- was too low down and player couldn't see it so i changed the 'space' to world instead of screen as my message doesnt need to appear in a 360 around the door
-- text was always shown so i had to set the initial visibility to off
-
-##### Enemy sounds
-- footsteps did not work
-- fixed them by adding the play sound to my enemy walking and running animation, playing the sound when the foot was down
-- zombie breathing didn't work unless the player spawned within its radius, and wouldnt restart if the player left and returned to the radius
-- fixed this by checking play when silent
-
-##### Github
-- I had multiple difficulties with using github. Although I have used it for my previous tasks, this unit is the first time I have used github.
-- When I downloaded my Medieval Dungeon Asset Pack I was unable to commit and push my changes. To fix this I downloaded git LFS. However that still did not work so I ended up deleting assets I did not need so I was able to commit and push.
-- Despite having a .gitignore, whenever I made a build I could not commit my changes in github. I created a folder outside of the github repository, on my desktop, to fix this. However this still did not work so I had to manually delete the build folders within my repository. I also had to discard changes in the commit that were over 100mb, despite having git lfs set up.
-- In future projects I will set up git lfs at the start and will also double check my .gitignore is set up correctly. This will hopefully prevent these problems from happening.
 
 
 ## Outcome
@@ -182,11 +123,15 @@ I found a video by RubaDev on how to randomize actor spawn locations and adapted
 
 
 
-## Critical Reflection
+## Reflection and Next Steps
 
+My main goal for the prototype was to create a solid foundation for my AI which I think I achieved. I successfully brought the monster to life with basic patrol, perception, and Hunt behavior. While tuning the Behavior Tree and aggression logic presented challenges, overcoming them ensured the monster reacts to the player in a believable way, creating a solid base for more advanced AI. 
 
+For my next steps I will be blocking out the full map and implementing the rest of the game mechanics such as crouching, hiding, improving the light system and creating objectives for the player to complete and progress through the house. Once these are finshed I will be further improving my enemy AI, using EQS for smarter search points, randomized patrols, expanding investigation patterns, and introducing stalking and ambush mechanics to make the monster’s behavior feel less predictable and more engaging.
 
+I will also be adding visuals to my game, 3D models, animations and post-processing. These will help me and play testers picture the final game and judge how scary it actually is.
 
+Overall I think I have a solid foundation to build the rest of my game on, the prototype has shown me that I have the skills and understanding needed to tackle the more complex behaviors in later phases, giving me confidence that I can create the rest of the game.
 
 
 
@@ -204,6 +149,7 @@ Behavior Tree in Unreal Engine - Quick Start Guide | Unreal Engine 5.7 Documenta
 
 Iovino, M., Scukins, E., Styrud, J., Ögren, P. and Smith, C. (2022) 'A survey of Behavior Trees in robotics and AI' In: Robotics and Autonomous Systems 154 p.104096.
 
+Unreal Engine Behavior Tree Node Reference: Decorators | Unreal Engine 5.7 Documentation | Epic Developer Community (s.d.) At: https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-behavior-tree-node-reference-decorators (Accessed  27/12/2025).
 
 
 
