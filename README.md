@@ -64,6 +64,12 @@ The source is reliable because it is written by established researchers and base
 
 My first goal is to make a prototype which can prove my game idea will work and is executable. I set out a few simple goals to achieve in this stage including a simplified version of the final AI (detects sound, sees player, chases player, patrols), and a working light system. These cover the core mechanics in my game. Other features such as player health and damage, crouching and sprinting, I have already done in previous projects so I am confident I will be able to implement them. 
 
+Since avoiding my enemy AI will be a key mechanic in the game, I gave it a bit more attention during the planning phase. I split my goals into three parts to make them more manageable. The first stage of my Ai is to get it “alive” quickly with a simple patrol loop and perception-driven investigation. The monster reacts to sound and sight, checks the player’s last known location, and returns to patrol, creating a basic but readable hunt loop.
+
+The second stage will increase believability by adding variability and tactics: EQS-driven search points, randomized patrols, and expanding investigation patterns. The monster can stalk, ambush, and pace itself, making searches feel emergent rather than scripted.
+
+The third stage is to elevate the AI to a systemic predator using utility-based decision-making, long-term memory, and adaptive learning. The monster shapes the environment, anticipates player habits, controls territory, and optimizes performance so it feels intelligent, unpredictable, and oppressive rather than omniscient.
+
 #### Health and Damage System 
 
 
@@ -71,158 +77,27 @@ My first goal is to make a prototype which can prove my game idea will work and 
 
 #### Enemy AI 
 
-My enemy will be 
+My enemy is a core part of the game, most of the tense atmosphere will come from the fact the player is stuck in the house with this monster. I want to build a strong foundation for my enemy before diving into more complex features, so for the prototype I completed stage one of my plan for the AI.
 
-
-<br>
- 
-#### Enemy Animations
-To animate my enemy I used animations from Mixamo. I used a combination of animation blueprints, blend spaces and animation montages. So far in my project I had a good understanding of what was going on but I really struggled with animations. To help I went over my Animation System task journal so I could figure out idle, walk and run animations. I also found a youtube video by Lisowi (AI Attack Tutorial - Unreal Engine 5.2, 2023) which showed me how to play my attack animations once the enemy is in attack range of the player.
-
-- I made a blend space for my zombie character. This would transition between the idle, walking and run animation. 
-- I used this blend space in an animation blueprint. This would change the animation based on the speed of the enemy, so during chases it would play the running animation.
-
-<iframe src="https://blueprintue.com/render/uk4uthg-/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 7. Animation blueprint event graph*
-
-
-- I created an attack animation montage for my enemy, in case I wanted a variety of animations for the attack.
-- I added a montage notify in my zombie attack montage. This is timed to be where the enemies hand begins to come down, as that is where the player appears to be taking damage.
-- In my enemy blueprints I played the animation montage when the player was within attack range. 
-
-<iframe src="https://blueprintue.com/render/muk6va19/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 8. Blueprints for enemy attack animation*
-
-[Enemy animation](https://www.youtube.com/watch?v=Di2K0OgP76Q&ab_channel=WSzramkowska)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Di2K0OgP76Q?si=MK6J8ufW9gO_DBI5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+The AI prototype was brought to life with a monster that patrols the house, reacts to sound and light, and hunts the player if its aggression grows too high—laying the foundation for an Alien-Isolation-style intelligent monster. The implementation involved creating a monster pawn with movement and perception components, an AI controller with a blackboard, and a behavior tree defining Patrol → Investigate → Hunt logic. Perception events update the blackboard, while light triggers increase aggression, causing more aggressive hunting behavior. After tuning patrol points, wait times, and sensory ranges, the monster exhibits basic but believable sensory-driven behavior, giving a solid base for more advanced AI in later stages.
 
 
 <br>
 
 #### Building the map
-I looked through the asset packs on Fab and found a medieval dungeon asset pack by Infuse Studio which I thought would be perfect to help create an unsettling atmosphere in my game.
 
-- Small map to get the feeling of being trapped with the enemy.
-- Lots of 'rooms' for the player to explore the environment, and also to disorient the player, making it a bit more difficult to search for the exit.
-- The rooms gave me the idea to include a key the player would have to search for in order to unlock the exit. The key would force the player to move around the map more, which increases the likelihood of them encountering the enemy.
-- Slight variation in shape but the map is mostly just a rectangle, with more rectangles inside. This keeps it clean and fair. 
-- Since I decided to keep the map small I thought my game would work well with just the one enemy. This is when I had the idea to make the enemy a one shot kill on the player, which would add to the tension. This also meant I would no longer need the HP bar I made at the beginning of the project.
-- I did some scene dressing, adding in props to make the environment feel more alive and in general be less boring to look at. I tried to vary the rooms, but not have too many props so as not to distract too much from looking for the key.
+Since this is just a prototype I did not put a lot of focus on the map, however I thought it was important to do a bit of research on horror game maps and how they are built to create a terrifying atmosphere. 
+
+I looked at Resident Evil 7: Biohazard (Capcom, 2017) because it was set in a house and aimed to invoke a sense of claustraphobia, which is something I wanted for my game. The game uses tight, interconnected spaces with limited visibility, forcing the player into close encounters and reducing their sense of control. Its looping layout and narrow corridors make it easy to feel lost or trapped, while blocked paths and locked doors constantly restrict movement. The confined environment, combined with strong sound design and minimal safe areas, keeps tension high and makes the player feel vulnerable throughout exploration.
+
+Although this isn't the final map, I did build a small version with lots of rooms and long corridors which might not make sense in real life, but provide oppurtunities for tension and possible jumpscares in my game. 
 
 <br>
 
-#### Interact: Key and door
-Since I had the idea to add a key into the game, I decided to work on it right away. I found a video tutorial by Matt Aspland (Door And Key System | How To Open A Locked Door With A Key In Unreal Engine 5 (Tutorial), 2023) on making a door and key system. This taught me how to create an interact input, how to animate my door using a timeline, and how to specify which key unlocks which door.
-
-- Made a blueprint interface for 'interact' and 'door'
-- Set 'E' as my interaction button and added the interact input logic to my third person character blueprint. I used the enhanced input action system.
-- Made a blueprint for key and door. Gave them both collision boxes.
-- Animated the door using a timeline
-
-<iframe src="https://blueprintue.com/render/qxpkc30l/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 9. Blueprints for the Interact Input*
-
-- Door opens if 'HasKey?' is true
-- Left and right door are animated using set relative rotation and door timeline
-
-<iframe src="https://blueprintue.com/render/msw381ik/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 10. Blueprints for door opening*
-
-- When player picks up key, the key object is destroyed
-
-<iframe src="https://blueprintue.com/render/a1s2vpwl/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 11. Blueprints for destroying the key*
-
-[Key and door test](https://www.youtube.com/watch?v=WYU4weehMSc&ab_channel=WSzramkowska)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/WYU4weehMSc?si=BMbtg7huz3RYLgm7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-#### Lighting 
-For lighting I knew I wanted my level to be fairly dark in order to create a scary atmosphere, hiding my enemy in the shadows. As I have never done this before I searched for a youtube video which could show me some of the possibilities with lighting in Unreal. I found one by Matt Aspland which specifically looks at interiors (How To Light Interiors In Unreal Engine 4 & 5 (Tutorial), 2022).
-
-- I used torches to light up the corridors, using a fire particle asset I created in one of my earlier tasks. 
-- I used rect lights in the rooms as the player would have to search for the key in these so I thought it would be fair to make them brighter.
-- I used point lights on some of the torches to give a brighter orange glow in the area, replicating the sort of lighting you get from fire.
-
-[Lighting Test](https://www.youtube.com/watch?v=qyXZ1G6vcNA&ab_channel=WSzramkowska)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qyXZ1G6vcNA?si=f1LQDMbGgLZZHKGA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-#### Visual Improvements
-
-- Changed my third person camera to first person by moving the camera attached to my character into the head. First person made the game much scarier as you could no longer see what was happening behind you or to the side of you.
-- Adding vignette for a horror feel.
-- Decreasing field of view, meaning the player sees less and the enemy is scarier.
-- Increased intensity of fog to add to the creepy atmosphere.
-
-#### Audio 
-Audio is a key feature in horror games and can really set the tone and mood of the game. I got my sounds and music from Zapsplat and Pixabay.
-
-- I used meta sound source for audio 
-- Most of my sounds are set up quite basic escept breathing which has a filter and limiter as it was originally too loud and obnoxious.
-
-<iframe src="https://blueprintue.com/render/kdmyjw2m/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 12. Meta sound source for human breathing*
-
-- I created sound attenuation for fire, to add a bit of liveliness to the environment.
-- I created sound attenuation for the zombie footsteps so the player can only hear them when they are close by.
-- Footstep sounds were done by adding a 'play sound' notify to the zombie walk and run animations. I timed these notifies with when the zombies foot was on the ground. This allowed me to achieve footsteps which matched the visual and the sound.
-- I also added sound attenuation to zombie breathing so the player starts hearing these disturbing noises when the enemy is nearby.
-
-Background sound to make the environment feel alive:
-- Horror music
-- Dungeon ambience
-
-Sounds:
-- Footsteps - help the player avoid the enemy but also build tension as you know he is near
-- Zombie breathing/noises - unsettling almost choking sounds which convey your enemy is a monster and not something human
-- Human/player breathing: Faint breathing, people often breathe heavier when experiencing anxiety or fear
-- Zombie scream - lets the player know the enemy is directly behind them and attacking
 
 #### Menus 
-Now that my main game loop was done I needed to create some menus so the player could navigate the game and there was on obvious win/lose. Although I have done a widget for my health bar early on in my project, I still wasn't the most familiar with UI in Unreal and its capabilities. To learn more about it I watched a video by Unreal University which showed how to create a main menu (How To Create A Main Menu - Unreal Engine 5 Tutorial, 2022). This video helped me learn how to use buttons which turned out to be fairly simple with the 'on clicked' events. I focused on functionality rather than visuals as I wanted feedback on my main gameplay loop.
 
-Main menu 
-- Used a screenshot of my game as a background image
-- Start and quit buttons 
-- Title of my game 
-- Tried to pick a horror font but I did not spend too much time on this as it is not the focus for my project or developing my skills.
-
-<iframe src="https://blueprintue.com/render/2iq9qb9i/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 13. setting input mode blueprints*
-
-<iframe src="https://blueprintue.com/render/xtx_purr/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 14. blueprints for start and quit button*
-
-Game win
-- Button to main menu restart or quit
-- Simple Escaped message 
-
-<iframe src="https://blueprintue.com/render/in6q22_q/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 15. blueprints for game win*
-
-Game Loss
-- Button to main menu, restart or quit
-- Simple game over message
-
-<iframe src="https://blueprintue.com/render/4285lcww/" scrolling="no" allowfullscreen></iframe>
-
-*Figure 16. blueprints for game over*
-
-[Menus Test](https://www.youtube.com/watch?v=yQ6JdHc166k&ab_channel=WSzramkowska)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yQ6JdHc166k?si=YFVE2nFVEi45mkz4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+I created a simple Main Menu 
 
 #### Feedback
 I asked family, friends and colleagues to test out my game and give me their feedback. 
