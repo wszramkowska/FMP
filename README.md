@@ -21,7 +21,7 @@ For my core mechanics I will try to find video tutorials to help me.
 
 #### Alien: Isolation
 
-Alien: Isolation is a survival horror game published in 2014 and developed by Creative Assembly. I chose this game because of the anatagonist, the Xenomorph, which remains a benchmark in AI design over a decade later. The developers are able to create the illusion of an intellifent enemy that learns from the player through clever use of complex behaviour trees and a two tier system for the AI (aetos, 2025). I want to use what I have learned to create my own complex enemy that appears to learn from and adapt to the player. 
+Alien: Isolation is a survival horror game published in 2014 and developed by Creative Assembly. I chose this game because of the antagonist, the Xenomorph, which remains a benchmark in AI design over a decade later. The developers are able to create the illusion of an intelligent enemy that learns from the player through clever use of complex behaviour trees and a two tier system for the AI (aetos, 2025). I want to use what I have learned to create my own complex enemy that appears to learn from and adapt to the player. 
 
 [How Does The Alien Work Off Camera Alien Isolation](https://youtu.be/MNMAduVsqhQ?si=Xm99RoZNNz3GOLOj)
 
@@ -39,15 +39,15 @@ Specifically I looked at AI Hearing and AI Sight. Hearing is handled by calling 
 
 I will also be using Behaviour Trees to manage the behaviour of my enemy AI. Although I have made games in Unreal Engine before, I actually have not used Behaviour Trees before so I will be frequently referring to documentation.
 
-I started with learning the basics by reading the Quick Start Guide. (Behavior Tree in Unreal Engine - Quick Start Guide | Unreal Engine 5.7 Documentation | Epic Developer Community, s.d.) which explains how to create an enemy AI in Unreal Engine that patrols the level, detects the player using AI Perception, and switches to chasing them when they are seen. It covers setting up an AI Controller, Blackboard, and Behavior Tree with tasks for patrolling and chasing, using decorators to control state changes based on line of sight. When the AI loses sight of the player for a set time, it stops chasing and returns to patrolling, demonstrating a complete, reactive AI loop built with Blueprints.
+I started with learning the basics by reading the Quick Start Guide. (Behaviour Tree in Unreal Engine - Quick Start Guide | Unreal Engine 5.7 Documentation | Epic Developer Community, s.d.) which explains how to create an enemy AI in Unreal Engine that patrols the level, detects the player using AI Perception, and switches to chasing them when they are seen. It covers setting up an AI Controller, Blackboard, and Behaviour Tree with tasks for patrolling and chasing, using decorators to control state changes based on line of sight. When the AI loses sight of the player for a set time, it stops chasing and returns to patrolling, demonstrating a complete, reactive AI loop built with Blueprints.
 
 Overall I think documentation is incredibly useful and as it is written on the official site, the information is incredibly accurate and is updated frequently. 
 
 <br>
 
-#### A survey of Behavior Trees in robotics and AI
+#### A survey of Behaviour Trees in robotics and AI
 
-I looked at academic papers, specifically about Behaviour trees to understand the underlying structure, strengths and limitations of Behaviour Trees. *A Survey of Behavior Trees in Robotics and AI* provided me with a strong academic foundation on understanding Behaviour Trees beyond engine-specific tutorials. The paper covers behavior tree theory, comparisons with other AI approaches such as finite state machines, and practical applications, making it particularly valuable for implementing complex AI behaviour correctly (Iovino et al., 2022). 
+I looked at academic papers, specifically about Behaviour trees to understand the underlying structure, strengths and limitations of Behaviour Trees. *A Survey of Behaviour Trees in Robotics and AI* provided me with a strong academic foundation on understanding Behaviour Trees beyond engine-specific tutorials. The paper covers behaviour tree theory, comparisons with other AI approaches such as finite state machines, and practical applications, making it particularly valuable for implementing complex AI behaviour correctly (Iovino et al., 2022). 
 
 The source is reliable because it is written by established researchers and based on peer-reviewed academic work, providing a strong theoretical foundation for behaviour trees that are still widely used in Unreal Engine. However, it may be slightly outdated, as it does not cover recent engine-specific features or workflows, reflecting how quickly game technology evolves.
 
@@ -76,7 +76,7 @@ The third stage is to elevate the AI to a systemic predator using utility-based 
 
 My enemy is a core part of the game, most of the tense atmosphere will come from the fact the player is stuck in the house with this monster. I want to build a strong foundation for my enemy before diving into more complex features, so for the prototype I completed stage one of my plan for the AI.
 
-The AI prototype was brought to life with a monster that patrols the house, reacts to sound and light, and hunts the player if its aggression grows too high—laying the foundation for an Alien-Isolation-style intelligent monster. The implementation involved creating a monster pawn with movement and perception components, an AI controller with a blackboard, and a behavior tree defining Patrol → Investigate → Hunt logic. Perception events update the blackboard, while light triggers increase aggression, causing more aggressive hunting behavior. After tuning patrol points, wait times, and sensory ranges, the monster exhibits basic but believable sensory-driven behavior, giving a solid base for more advanced AI in later stages.
+The AI prototype was brought to life with a monster that patrols the house, reacts to sound and light, and hunts the player if its aggression grows too high—laying the foundation for an Alien-Isolation-style intelligent monster. The implementation involved creating a monster pawn with movement and perception components, an AI controller with a blackboard, and a behaviour tree defining Patrol → Investigate → Hunt logic. Perception events update the blackboard, while light triggers increase aggression, causing more aggressive hunting behaviour. After tuning patrol points, wait times, and sensory ranges, the monster exhibits basic but believable sensory-driven behaviour, giving a solid base for more advanced AI in later stages.
 
 <br>
 
@@ -84,9 +84,9 @@ The AI prototype was brought to life with a monster that patrols the house, reac
 
 Since this is just a prototype I did not put a lot of focus on the map, however I thought it was important to do a bit of research on horror game maps and how they are built to create a terrifying atmosphere. 
 
-I looked at Resident Evil 7: Biohazard (Capcom, 2017) because it was set in a house and aimed to invoke a sense of claustraphobia, which is something I wanted for my game. The game uses tight, interconnected spaces with limited visibility, forcing the player into close encounters and reducing their sense of control. Its looping layout and narrow corridors make it easy to feel lost or trapped, while blocked paths and locked doors constantly restrict movement. The confined environment, combined with strong sound design and minimal safe areas, keeps tension high and makes the player feel vulnerable throughout exploration.
+I looked at Resident Evil 7: Biohazard (Capcom, 2017) because it was set in a house and aimed to invoke a sense of claustrophobia, which is something I wanted for my game. The game uses tight, interconnected spaces with limited visibility, forcing the player into close encounters and reducing their sense of control. Its looping layout and narrow corridors make it easy to feel lost or trapped, while blocked paths and locked doors constantly restrict movement. The confined environment, combined with strong sound design and minimal safe areas, keeps tension high and makes the player feel vulnerable throughout exploration.
 
-Although this isn't the final map, I did build a small version with lots of rooms and long corridors which might not make sense in real life, but provide oppurtunities for tension and possible jumpscares in my game. 
+Although this isn't the final map, I did build a small version with lots of rooms and long corridors which might not make sense in real life, but provide opportunities for tension and possible jumpscares in my game. 
 
 <br>
 
@@ -107,11 +107,11 @@ Now that I have key mechanics down I want to add some visuals so I can more accu
 
 ##### Behaviour Tree
 
-One technical challenge I encountered was getting the Patrol → Investigate → Hunt sequences to transition correctly. Initially, the monster would get stuck patrolling or investigating and never enter Hunt mode, even when it saw the player. I looked at Unreal Documentation (Unreal Engine Behavior Tree Node Reference: Decorators | Unreal Engine 5.7 Documentation | Epic Developer Community, s.d.) and found the issue was caused by the Behavior Tree not interrupting lower-priority tasks when Hunt conditions were met. To fix this, I removed the aggression decorator, and configured the Decorator Abort rules so that the Hunt sequence could interrupt Patrol or Investigate immediately. This ensured the monster would respond dynamically to the player, creating a functional Patrol → Investigate → Hunt loop.
+One technical challenge I encountered was getting the Patrol → Investigate → Hunt sequences to transition correctly. Initially, the monster would get stuck patrolling or investigating and never enter Hunt mode, even when it saw the player. I looked at Unreal Documentation (Unreal Engine Behaviour Tree Node Reference: Decorators | Unreal Engine 5.7 Documentation | Epic Developer Community, s.d.) and found the issue was caused by the Behaviour Tree not interrupting lower-priority tasks when Hunt conditions were met. To fix this, I removed the aggression decorator, and configured the Decorator Abort rules so that the Hunt sequence could interrupt Patrol or Investigate immediately. This ensured the monster would respond dynamically to the player, creating a functional Patrol → Investigate → Hunt loop.
 
 ##### Aggression
 
-Another challenge was making the monster react correctly to lights. At first, it either ignored lights or went into Hunt too soon. By adjusting how much lights increased its AggressionLevel and setting proper thresholds in the Behavior Tree, the monster would now investigate lights first and only hunt the player when aggression was high enough. I will have to keep tweaking this as I develop the game and figure out how many rooms and lights there will be. 
+Another challenge was making the monster react correctly to lights. At first, it either ignored lights or went into Hunt too soon. By adjusting how much lights increased its Aggression Level and setting proper thresholds in the Behaviour Tree, the monster would now investigate lights first and only hunt the player when aggression was high enough. I will have to keep tweaking this as I develop the game and figure out how many rooms and lights there will be. 
 
 
 
