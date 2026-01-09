@@ -78,6 +78,8 @@ My enemy is a core part of the game, most of the tense atmosphere will come from
 
 The AI prototype was brought to life with a monster that patrols the house, reacts to sound and light, and hunts the player if its aggression grows too high—laying the foundation for an Alien-Isolation-style intelligent monster. The implementation involved creating a monster pawn with movement and perception components, an AI controller with a blackboard, and a behaviour tree defining Patrol → Investigate → Hunt logic. Perception events update the blackboard, while light triggers increase aggression, causing more aggressive hunting behaviour. After tuning patrol points, wait times, and sensory ranges, the monster exhibits basic but believable sensory-driven behaviour, giving a solid base for more advanced AI in later stages.
 
+
+
 <br>
 
 #### Building the map
@@ -88,11 +90,29 @@ I looked at Resident Evil 7: Biohazard (Capcom, 2017) because it was set in a ho
 
 Although this isn't the final map, I did build a small version with lots of rooms and long corridors which might not make sense in real life, but provide opportunities for tension and possible jumpscares in my game. 
 
+![Map-Layout](assets/map-labelled.png)
+
+*Figure 1: Current map with labels*
+
 <br>
 
-#### Menus 
+#### Light System
+
+I created BP_LightSwitch which is another core mechanic which will interact with the enemy AI. The switch flips on and off, turns the lights in the room on and alerts the monster to the player's potential position. Lights are added to an array so multiple lights can be handled by a single switch if needed. The system is versatile and will make future development much easier. 
+
+![Light-System](assets/light-system.png)
+
+<br>
+
+#### Menus and UI
 
 I created a simple Main Menu to start and quit the game. This was enough for my prototype but during further development I will be adding a pause menu and an options menu.
+
+I also added a crosshair in the center of the screen so the player can see what they are pressing, such as the light switches. 
+
+![Menu-Start](assets/menu-start.png)
+
+<br>
 
 #### Feedback
 
@@ -101,6 +121,10 @@ I asked family, friends and colleagues to test out my game and give me their fee
 As this is just a prototype, feedback has been quite positive with players seeing the game potential. However, atmosphere plays a key part in horror games and is difficult to judge in the prototype phase as there are no visual elements, no house clutter and no post-processing to help sell the horror. 
 
 Now that I have key mechanics down I want to add some visuals so I can more accurately assess if the monster is actually scary when the player crosses paths with it. I also want to add some fog to reduce visibility and give that creepy atmosphere, building further tension.
+
+![Main-Menu](assets/main-menu.png)
+
+<br>
 
 
 ### Technical Difficulties
@@ -119,7 +143,9 @@ Another challenge was making the monster react correctly to lights. At first, it
 
 ## Outcome
 
+I think this is a successful prototype for my game, it demonstrates the core mechanics I will be including and lays a solid foundation for the 'star' of the game, the enemy AI. 
 
+Although the map is empty and well lit, I have still managed to be scared by the enemy AI on occasion, standing directly behind me or rounding a corner unexpectedly. I think this supports not only my technical ability to complete the game, but the ability to create tension, horror and authentic jumpscares. 
 
 
 
