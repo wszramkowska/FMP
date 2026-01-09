@@ -78,7 +78,19 @@ My enemy is a core part of the game, most of the tense atmosphere will come from
 
 The AI prototype was brought to life with a monster that patrols the house, reacts to sound and light, and hunts the player if its aggression grows too high—laying the foundation for an Alien-Isolation-style intelligent monster. The implementation involved creating a monster pawn with movement and perception components, an AI controller with a blackboard, and a behaviour tree defining Patrol → Investigate → Hunt logic. Perception events update the blackboard, while light triggers increase aggression, causing more aggressive hunting behaviour. After tuning patrol points, wait times, and sensory ranges, the monster exhibits basic but believable sensory-driven behaviour, giving a solid base for more advanced AI in later stages.
 
+Hearing Sense:
 
+![Enemy-Aggression](assets/enemy-aggression.gif)
+
+*Figure 1. Enemy AI hears noise, moves to noise, finds and chases player*
+
+![Enemy-Investigation](assets/enemy-investigation.gif)
+
+*Figure 2. Enemy AI hears noise and investigates but doesn't find player*
+
+Sight Sense:
+
+![Enemy-Chase](assets/enemy-chase.gif)
 
 <br>
 
@@ -100,7 +112,7 @@ Although this isn't the final map, I did build a small version with lots of room
 
 I created BP_LightSwitch which is another core mechanic which will interact with the enemy AI. The switch flips on and off, turns the lights in the room on and alerts the monster to the player's potential position. Lights are added to an array so multiple lights can be handled by a single switch if needed. The system is versatile and will make future development much easier. 
 
-![Light-System](assets/light-system.png)
+![Light-System](assets/light-system.gif)
 
 <br>
 
@@ -110,7 +122,7 @@ I created a simple Main Menu to start and quit the game. This was enough for my 
 
 I also added a crosshair in the center of the screen so the player can see what they are pressing, such as the light switches. 
 
-![Menu-Start](assets/menu-start.png)
+![Menu-Start](assets/menu-start.gif)
 
 <br>
 
