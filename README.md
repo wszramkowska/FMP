@@ -171,6 +171,12 @@ Although the map is empty and well lit, I have still managed to be scared by the
 
 *Figure 8: Longer video of prototype outcome*
 
+### Itch.io 
+
+<iframe frameborder="0" src="https://itch.io/embed/4182469" width="552" height="167"><a href="https://squlddy.itch.io/project-prototype">Project Prototype by squiddy</a></iframe>
+
+Link: https://squlddy.itch.io/project-prototype
+
 
 ## Reflection and Next Steps
 
