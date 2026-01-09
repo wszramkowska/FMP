@@ -92,6 +92,8 @@ Sight Sense:
 
 ![Enemy-Chase](assets/enemy-chase.gif)
 
+*Figure 3. Enemy AI sees and chases player*
+
 <br>
 
 #### Building the map
@@ -104,7 +106,7 @@ Although this isn't the final map, I did build a small version with lots of room
 
 ![Map-Layout](assets/map-labelled.png)
 
-*Figure 1: Current map with labels*
+*Figure 4: Current map with labels*
 
 <br>
 
@@ -113,6 +115,8 @@ Although this isn't the final map, I did build a small version with lots of room
 I created BP_LightSwitch which is another core mechanic which will interact with the enemy AI. The switch flips on and off, turns the lights in the room on and alerts the monster to the player's potential position. Lights are added to an array so multiple lights can be handled by a single switch if needed. The system is versatile and will make future development much easier. 
 
 ![Light-System](assets/light-system.gif)
+
+*Figure 5: Player flicking light switch*
 
 <br>
 
@@ -123,6 +127,8 @@ I created a simple Main Menu to start and quit the game. This was enough for my 
 I also added a crosshair in the center of the screen so the player can see what they are pressing, such as the light switches. 
 
 ![Menu-Start](assets/menu-start.gif)
+
+*Figure 6: Player press start*
 
 <br>
 
@@ -135,6 +141,8 @@ As this is just a prototype, feedback has been quite positive with players seein
 Now that I have key mechanics down I want to add some visuals so I can more accurately assess if the monster is actually scary when the player crosses paths with it. I also want to add some fog to reduce visibility and give that creepy atmosphere, building further tension.
 
 ![Main-Menu](assets/main-menu.png)
+
+*Figure 7: QR Code used for feedback*
 
 <br>
 
@@ -159,6 +167,9 @@ I think this is a successful prototype for my game, it demonstrates the core mec
 
 Although the map is empty and well lit, I have still managed to be scared by the enemy AI on occasion, standing directly behind me or rounding a corner unexpectedly. I think this supports not only my technical ability to complete the game, but the ability to create tension, horror and authentic jumpscares. 
 
+![Prototype-Outcome](assets/prototype-outcome.gif)
+
+*Figure 8: Longer video of prototype outcome*
 
 
 ## Reflection and Next Steps
@@ -188,6 +199,9 @@ Behavior Tree in Unreal Engine - Quick Start Guide | Unreal Engine 5.7 Documenta
 Iovino, M., Scukins, E., Styrud, J., Ögren, P. and Smith, C. (2022) 'A survey of Behavior Trees in robotics and AI' In: Robotics and Autonomous Systems 154 p.104096.
 
 Unreal Engine Behavior Tree Node Reference: Decorators | Unreal Engine 5.7 Documentation | Epic Developer Community (s.d.) At: https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-behavior-tree-node-reference-decorators (Accessed  27/12/2025).
+
+How to Create an Interaction System in Unreal Engine 5 | UE5 Interaction Tutorial (2024) Directed by HALbot Studios. At: https://www.youtube.com/watch?v=7OmgBa-cKro (Accessed  18/11/2025).
+
 
 
 
