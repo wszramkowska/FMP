@@ -3,6 +3,16 @@
 	"EngineAssociation": "{070B728A-415D-E909-5C28-86A7FF6D1244}",
 	"Category": "",
 	"Description": "",
+	"Modules": [
+		{
+			"Name": "FMP",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	],
 	"Plugins": [
 		{
 			"Name": "ModelingToolsEditorMode",

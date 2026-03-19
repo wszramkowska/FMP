@@ -1,0 +1,42 @@
+{
+    "C_Cpp.default.compileCommands":  "${workspaceFolder}\\.vscode\\compile_commands.json",
+    "C_Cpp.default.compilerPath":  "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+    "C_Cpp.default.intelliSenseMode":  "msvc-x64",
+    "C_Cpp.default.cppStandard":  "c++20",
+    "C_Cpp.default.cStandard":  "c17",
+    "files.associations":  {
+                               "*.Build.cs":  "csharp",
+                               "*.Target.cs":  "csharp",
+                               "*.generated.h":  "cpp",
+                               "*.inl":  "cpp",
+                               "*.usf":  "cpp",
+                               "*.ush":  "cpp"
+                           },
+    "files.exclude":  {
+                          "**/.git":  true,
+                          "**/Binaries":  true,
+                          "**/DerivedDataCache":  true,
+                          "**/Intermediate":  true,
+                          "**/Saved":  true
+                      },
+    "search.exclude":  {
+                           "**/Binaries":  true,
+                           "**/DerivedDataCache":  true,
+                           "**/Intermediate":  true,
+                           "**/Saved":  true
+                       },
+    "files.watcherExclude":  {
+                                 "**/Binaries/**":  true,
+                                 "**/DerivedDataCache/**":  true,
+                                 "**/Intermediate/**":  true,
+                                 "**/Saved/**":  true
+                             },
+    "terminal.integrated.defaultProfile.windows":  "PowerShell",
+    "terminal.integrated.env.windows":  {
+                                            "PATH":  "C:\\Program Files\\Epic Games\\5.6\\Engine\\Binaries\\ThirdParty\\DotNet\\8.0.300\\win-x64;${env:PATH}",
+                                            "DOTNET_ROOT":  "C:\\Program Files\\Epic Games\\5.6\\Engine\\Binaries\\ThirdParty\\DotNet\\8.0.300\\win-x64",
+                                            "DOTNET_HOST_PATH":  "C:\\Program Files\\Epic Games\\5.6\\Engine\\Binaries\\ThirdParty\\DotNet\\8.0.300\\win-x64\\dotnet.exe",
+                                            "DOTNET_MULTILEVEL_LOOKUP":  "0",
+                                            "DOTNET_ROLL_FORWARD":  "LatestMajor"
+                                        }
+}

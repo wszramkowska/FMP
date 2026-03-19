@@ -1,0 +1,36 @@
+{
+    "version":  "0.2.0",
+    "configurations":  [
+                           {
+                               "name":  "Attach to Unreal Editor",
+                               "type":  "cppvsdbg",
+                               "request":  "attach",
+                               "processId":  "${command:pickProcess}",
+                               "visualizerFile":  "C:\\Program Files\\Epic Games\\5.6\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+                               "sourceFileMap":  {
+                                                     "D:\\build\\++UE5\\Sync":  "C:\\Program Files\\Epic Games\\5.6",
+                                                     "Z:\\UEVFS\\FMP":  "C:\\Users\\2106125\\Documents\\GitHub\\FMP",
+                                                     "Z:\\UEVFS\\Root":  "C:\\Program Files\\Epic Games\\5.6"
+                                                 }
+                           },
+                           {
+                               "name":  "Launch Unreal Editor (Development)",
+                               "type":  "cppvsdbg",
+                               "request":  "launch",
+                               "program":  "C:\\Program Files\\Epic Games\\5.6\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+                               "args":  [
+                                            "C:\\Users\\2106125\\Documents\\GitHub\\FMP\\FMP.uproject"
+                                        ],
+                               "cwd":  "C:\\Program Files\\Epic Games\\5.6",
+                               "stopAtEntry":  false,
+                               "console":  "integratedTerminal",
+                               "preLaunchTask":  "Unreal: Build Editor (Development)",
+                               "visualizerFile":  "C:\\Program Files\\Epic Games\\5.6\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+                               "sourceFileMap":  {
+                                                     "D:\\build\\++UE5\\Sync":  "C:\\Program Files\\Epic Games\\5.6",
+                                                     "Z:\\UEVFS\\FMP":  "C:\\Users\\2106125\\Documents\\GitHub\\FMP",
+                                                     "Z:\\UEVFS\\Root":  "C:\\Program Files\\Epic Games\\5.6"
+                                                 }
+                           }
+                       ]
+}

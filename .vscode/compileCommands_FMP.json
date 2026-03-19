@@ -1,0 +1,42 @@
+[
+	{
+		"file": "C:\\Users\\2106125\\Documents\\GitHub\\FMP\\Source\\FMP\\FMP.Build.cs",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\2106125\\Documents\\GitHub\\FMP\\.vscode\\compileCommands_FMP\\FMP.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\5.6\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\2106125\\Documents\\GitHub\\FMP\\Source\\FMP\\FMP.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\2106125\\Documents\\GitHub\\FMP\\.vscode\\compileCommands_FMP\\FMP.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\5.6\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\2106125\\Documents\\GitHub\\FMP\\Source\\FMP\\FMP.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\2106125\\Documents\\GitHub\\FMP\\.vscode\\compileCommands_FMP\\FMP.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\5.6\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\2106125\\Documents\\GitHub\\FMP\\Source\\FMP\\HealthSystem.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\2106125\\Documents\\GitHub\\FMP\\.vscode\\compileCommands_FMP\\FMP.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\5.6\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\2106125\\Documents\\GitHub\\FMP\\Source\\FMP\\HealthSystem.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\2106125\\Documents\\GitHub\\FMP\\.vscode\\compileCommands_FMP\\FMP.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\5.6\\Engine\\Source"
+	}
+]

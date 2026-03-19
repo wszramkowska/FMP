@@ -1,0 +1,26 @@
+[
+	{
+		"file": "C:/Users/2106125/Documents/GitHub/FMP/Intermediate/Build/Win64/x64/UnrealEditor/Development/FMP/Module.FMP.gen.cpp",
+		"command": "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/x64/bin/clang-cl.exe\" @\"C:/Users/2106125/Documents/GitHub/FMP/Intermediate/Build/Win64/x64/UnrealEditor/Development/FMP/Module.FMP.gen.cpp.obj.rsp\" ",
+		"directory": "C:/Program Files/Epic Games/5.6/Engine/Source",
+		"output": "C:/Users/2106125/Documents/GitHub/FMP/Intermediate/Build/Win64/x64/UnrealEditor/Development/FMP/Module.FMP.gen.cpp.obj"
+	},
+	{
+		"file": "C:/Users/2106125/Documents/GitHub/FMP/Intermediate/Build/Win64/x64/UnrealEditor/Development/FMP/PerModuleInline.gen.cpp",
+		"command": "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/x64/bin/clang-cl.exe\" @\"C:/Users/2106125/Documents/GitHub/FMP/Intermediate/Build/Win64/x64/UnrealEditor/Development/FMP/PerModuleInline.gen.cpp.obj.rsp\" ",
+		"directory": "C:/Program Files/Epic Games/5.6/Engine/Source",
+		"output": "C:/Users/2106125/Documents/GitHub/FMP/Intermediate/Build/Win64/x64/UnrealEditor/Development/FMP/PerModuleInline.gen.cpp.obj"
+	},
+	{
+		"file": "C:/Users/2106125/Documents/GitHub/FMP/Source/FMP/FMP.cpp",
+		"command": "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/x64/bin/clang-cl.exe\" @\"C:/Users/2106125/Documents/GitHub/FMP/Intermediate/Build/Win64/x64/UnrealEditor/Development/FMP/FMP.cpp.obj.rsp\" ",
+		"directory": "C:/Program Files/Epic Games/5.6/Engine/Source",
+		"output": "C:/Users/2106125/Documents/GitHub/FMP/Intermediate/Build/Win64/x64/UnrealEditor/Development/FMP/FMP.cpp.obj"
+	},
+	{
+		"file": "C:/Users/2106125/Documents/GitHub/FMP/Source/FMP/HealthSystem.cpp",
+		"command": "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/x64/bin/clang-cl.exe\" @\"C:/Users/2106125/Documents/GitHub/FMP/Intermediate/Build/Win64/x64/UnrealEditor/Development/FMP/HealthSystem.cpp.obj.rsp\" ",
+		"directory": "C:/Program Files/Epic Games/5.6/Engine/Source",
+		"output": "C:/Users/2106125/Documents/GitHub/FMP/Intermediate/Build/Win64/x64/UnrealEditor/Development/FMP/HealthSystem.cpp.obj"
+	}
+]

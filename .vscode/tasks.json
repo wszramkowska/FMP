@@ -1,0 +1,166 @@
+{
+    "version":  "2.0.0",
+    "tasks":  [
+                  {
+                      "label":  "Unreal: Setup VS Code",
+                      "type":  "shell",
+                      "command":  "powershell.exe",
+                      "args":  [
+                                   "-ExecutionPolicy",
+                                   "Bypass",
+                                   "-File",
+                                   "${workspaceFolder}\\Scripts\\Unreal\\Setup-VSCode.ps1"
+                               ],
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  },
+                      "problemMatcher":  [
+
+                                         ]
+                  },
+                  {
+                      "label":  "Unreal: Refresh IntelliSense Database",
+                      "type":  "shell",
+                      "command":  "powershell.exe",
+                      "args":  [
+                                   "-ExecutionPolicy",
+                                   "Bypass",
+                                   "-File",
+                                   "${workspaceFolder}\\Scripts\\Unreal\\Invoke-Unreal.ps1",
+                                   "-Action",
+                                   "GenerateClangDatabase"
+                               ],
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  },
+                      "problemMatcher":  [
+
+                                         ]
+                  },
+                  {
+                      "label":  "Unreal: Build Editor (Development)",
+                      "type":  "shell",
+                      "command":  "powershell.exe",
+                      "args":  [
+                                   "-ExecutionPolicy",
+                                   "Bypass",
+                                   "-File",
+                                   "${workspaceFolder}\\Scripts\\Unreal\\Invoke-Unreal.ps1",
+                                   "-Action",
+                                   "Build",
+                                   "-Target",
+                                   "Editor",
+                                   "-Configuration",
+                                   "Development"
+                               ],
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  },
+                      "problemMatcher":  "$msCompile",
+                      "group":  {
+                                    "kind":  "build",
+                                    "isDefault":  true
+                                }
+                  },
+                  {
+                      "label":  "Unreal: Clean Editor (Development)",
+                      "type":  "shell",
+                      "command":  "powershell.exe",
+                      "args":  [
+                                   "-ExecutionPolicy",
+                                   "Bypass",
+                                   "-File",
+                                   "${workspaceFolder}\\Scripts\\Unreal\\Invoke-Unreal.ps1",
+                                   "-Action",
+                                   "Clean",
+                                   "-Target",
+                                   "Editor",
+                                   "-Configuration",
+                                   "Development"
+                               ],
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  },
+                      "problemMatcher":  "$msCompile"
+                  },
+                  {
+                      "label":  "Unreal: Build Game (Development)",
+                      "type":  "shell",
+                      "command":  "powershell.exe",
+                      "args":  [
+                                   "-ExecutionPolicy",
+                                   "Bypass",
+                                   "-File",
+                                   "${workspaceFolder}\\Scripts\\Unreal\\Invoke-Unreal.ps1",
+                                   "-Action",
+                                   "Build",
+                                   "-Target",
+                                   "Game",
+                                   "-Configuration",
+                                   "Development"
+                               ],
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  },
+                      "problemMatcher":  "$msCompile"
+                  },
+                  {
+                      "label":  "Unreal: Launch Editor",
+                      "type":  "shell",
+                      "command":  "powershell.exe",
+                      "args":  [
+                                   "-ExecutionPolicy",
+                                   "Bypass",
+                                   "-File",
+                                   "${workspaceFolder}\\Scripts\\Unreal\\Invoke-Unreal.ps1",
+                                   "-Action",
+                                   "LaunchEditor"
+                               ],
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  },
+                      "dependsOn":  [
+                                        "Unreal: Build Editor (Development)"
+                                    ],
+                      "problemMatcher":  [
+
+                                         ]
+                  },
+                  {
+                      "label":  "Unreal: Start Editor (Build + Launch)",
+                      "type":  "shell",
+                      "command":  "powershell.exe",
+                      "args":  [
+                                   "-ExecutionPolicy",
+                                   "Bypass",
+                                   "-File",
+                                   "${workspaceFolder}\\Scripts\\Unreal\\Start-UnrealEditor.ps1"
+                               ],
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  },
+                      "problemMatcher":  [
+
+                                         ]
+                  },
+                  {
+                      "label":  "Unreal: Rebuild and Launch Editor",
+                      "type":  "shell",
+                      "command":  "powershell.exe",
+                      "args":  [
+                                   "-ExecutionPolicy",
+                                   "Bypass",
+                                   "-File",
+                                   "${workspaceFolder}\\Scripts\\Unreal\\Start-UnrealEditor.ps1",
+                                   "-Clean",
+                                   "-RefreshIntelliSense"
+                               ],
+                      "options":  {
+                                      "cwd":  "${workspaceFolder}"
+                                  },
+                      "problemMatcher":  [
+
+                                         ]
+                  }
+              ]
+}
