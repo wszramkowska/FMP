@@ -1,0 +1,15 @@
+<doxygenlayout version="1.0">
+  <navindex>
+    <tab type="mainpage" visible="yes" title="Home"/>
+    <tab type="modules" visible="yes" title="Modules"/>
+    <tab type="classes" visible="yes" title="Classes">
+      <tab type="classes" visible="yes" title="Class List"/>
+      <tab type="classindex" visible="yes" title="Class Index"/>
+      <tab type="hierarchy" visible="yes" title="Class Hierarchy"/>
+    </tab>
+    <tab type="files" visible="yes" title="Files">
+      <tab type="files" visible="yes" title="File List"/>
+      <tab type="globals" visible="yes" title="File Members"/>
+    </tab>
+  </navindex>
+</doxygenlayout>

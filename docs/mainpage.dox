@@ -1,0 +1,34 @@
+/**
+ * @mainpage FMP API Documentation
+ *
+ * @section overview Overview
+ *
+ * FMP is an Unreal Engine C++ project. These pages are generated automatically
+ * from the source tree with Doxygen in GitHub Actions and published to GitHub
+ * Pages from the main branch.
+ *
+ * @section modules Modules
+ *
+ * - @ref FMPGameplay documents the current runtime gameplay API.
+ *
+ * @section blueprints Blueprint API
+ *
+ * Blueprint-facing classes, properties, functions, and multicast delegates are
+ * documented directly beside the Unreal reflection macros in the public headers.
+ * Look for BlueprintCallable, BlueprintPure, BlueprintReadOnly,
+ * BlueprintReadWrite, and BlueprintAssignable entries in each class reference.
+ *
+ * @section ownership Ownership And Threading
+ *
+ * Runtime APIs follow Unreal Engine ownership rules. UObject-derived types are
+ * owned and garbage-collected by Unreal according to their outer, component, or
+ * actor relationship. Unless a symbol explicitly states otherwise, gameplay
+ * component mutation is intended for the game thread and does not replicate
+ * automatically.
+ *
+ * @section ci Continuous Documentation
+ *
+ * Pull requests validate documentation generation and upload the generated HTML
+ * as a workflow artifact. Pushes to main generate the same documentation and
+ * deploy it to GitHub Pages.
+ */

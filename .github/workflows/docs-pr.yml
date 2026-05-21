@@ -1,0 +1,40 @@
+name: Documentation PR
+
+on:
+  pull_request:
+    paths:
+      - "Source/**"
+      - "docs/**"
+      - "Doxyfile"
+      - "Scripts/Docs/**"
+      - ".github/workflows/docs-pr.yml"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-docs:
+    name: Validate Doxygen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install documentation tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+
+      - name: Generate documentation
+        shell: pwsh
+        run: ./Scripts/Docs/validate-doxygen.ps1
+
+      - name: Upload documentation artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fmp-api-docs-pr
+          path: docs/generated/html
+          if-no-files-found: error

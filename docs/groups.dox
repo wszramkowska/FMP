@@ -1,0 +1,14 @@
+/**
+ * @defgroup FMP FMP API
+ * @brief Public API documentation for the FMP Unreal Engine project.
+ *
+ * The project currently exposes one runtime gameplay module, @ref FMPGameplay,
+ * containing reusable actor components that can be attached to gameplay actors
+ * and controlled from C++ or Blueprint.
+ */
+
+/**
+ * @defgroup FMPGameplay Gameplay Systems
+ * @ingroup FMP
+ * @brief Runtime gameplay components and delegates exposed by the FMP module.
+ */
