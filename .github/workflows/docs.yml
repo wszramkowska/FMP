@@ -38,6 +38,9 @@ jobs:
         shell: pwsh
         run: ./Scripts/Docs/validate-doxygen.ps1
 
+      - name: Disable Jekyll processing
+        run: touch docs/generated/html/.nojekyll
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
