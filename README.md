@@ -55,6 +55,93 @@ The source is reliable because it is written by established researchers and base
 
 
 
+### Enemy AI Pitfalls and System Selection
+
+Enemy artificial intelligence has different failure modes across genres. In first-person shooters and stealth titles, the critical failures are usually related to detection quality: an enemy that ignores a nearby gunshot, or a system that switches instantly from complete obliviousness to perfect knowledge. These extremes break immersion because they eliminate the gradual sensing and uncertainty that players expect.
+
+In horror and survival games, the primary issue is often overconfidence: the antagonist pursues the player as if line of sight and cover do not exist. Without a viable loss mechanic or a believable tracking process, the encounter feels scripted rather than emergent. In strategy games, broken AI tends to appear at the group level: units fail to coordinate, do not exploit choke points, and repeat the same ineffective tactics. In open-world games, the problem becomes a lack of persistent memory: NPCs commonly forget a combat encounter immediately after it ends, which undermines the sense of a coherent world.
+
+These observations suggest that “bad AI” is not a single problem, but a collection of architectural weaknesses. A single poor agent is annoying; a systemic flaw replicated across many agents ruins the gameplay experience.
+
+### Comparative Architectures in Unreal Engine
+
+When choosing an AI architecture in Unreal Engine, the decision should be driven by the design problem rather than the default engine toolset.
+
+Finite State Machines (FSMs) are the simplest approach. They are effective for small, phase-driven systems such as boss fights or prototype behaviours. The drawback is scalability: the number of transitions grows quickly with the number of states, making complex behaviours difficult to maintain.
+
+Behaviour Trees are the established Unreal pattern for tactical, perception-driven agents. BTs are hierarchical and reactive, and the Blackboard provides a centralized shared data layer. Their limitation is that they are fundamentally reactive rather than planning systems; they select actions based on current world state rather than constructing long-term plans.
+
+State Trees — a newer UE5 system — combine elements of FSMs and BTs. They are often more readable and offer stronger authoring tools, but their Blueprint binding and overall maturity remain less robust than the tried-and-tested Behaviour Tree workflow.
+
+Goal Oriented Action Planning (GOAP) is the most expressive of the four. It gives agents a goal and a library of actions, then uses a planner to search for a sequence of actions that satisfies preconditions and postconditions. GOAP can produce emergent, creative solutions such as flanking or coordinated suppression. The trade-off is runtime cost and authoring complexity: planning requires careful state-space design and can be expensive at scale.
+
+### F.E.A.R. as a GOAP Case Study
+
+F.E.A.R. remains the canonical example of GOAP in commercial games. Jeff Orkin described how the game’s soldier AI used a planner to define behaviour, while the execution layer was a minimal FSM with only three states: GoTo, Animate, and UseSmartObject. The planner effectively handled the decision-making, leaving the runtime system to execute the chosen actions.
+
+This case study demonstrates why GOAP is attractive for emergent behaviour. For the current prototype, however, Behaviour Trees were preferred for two reasons: first, the CPU cost of runtime A* planning per agent is difficult to justify for a small-scale horror experience; second, BTs offer predictable behaviour and faster iteration through Unreal’s native debugging and visual authoring tools.
+
+### Behaviour Tree Class Hierarchy
+
+A frequent source of implementation error is misunderstanding the Unreal Behaviour Tree class hierarchy.
+
+The base class is `UBTNode`, which provides access to runtime memory and tree state. From there, the hierarchy splits into three main branches:
+
+- `UBTCompositeNode`, which includes selectors, sequences, and parallel nodes;
+- `UBTDecorator`, which wraps nodes with conditional logic;
+- `UBTService`, which performs periodic updates while a branch is active.
+
+Tasks are leaf nodes and inherit from `UBTTaskNode`. In Blueprint, the correct base class for tasks is `UBTTask_BlueprintBase`; using `UBTTaskNode` directly in Blueprint can compile and appear valid in the editor, but it will not expose the Blueprint execution hooks such as `ReceiveExecuteAI` or `ReceiveTick`. This silent failure mode is a common trap.
+
+The active tree runner, `UBehaviorTreeComponent`, is hosted on the AI Controller rather than the Pawn. Asset loading and caching are managed by `UBehaviorTreeManager`.
+
+### Hearing Perception and Stimulus Flow
+
+Hearing is one of the most important senses for believable enemy AI, and it is also one of the most commonly implemented incorrectly.
+
+The stimulus flow begins when a player event generates noise: firing a weapon, opening a door, or landing from a jump. The game calls `MakeNoise` at the event location, which reports a stimulus to Unreal’s perception system. The AI’s `UAIPerceptionComponent` evaluates whether the noise source is within the configured hearing radius.
+
+If the stimulus is in range, the AI Controller receives an `OnTargetPerceptionUpdated` callback. In this handler, the blackboard is updated — typically by setting a flag such as `bHeardSound` and storing `LastKnownLocation` — so that the Behaviour Tree can transition into an investigative or combat state.
+
+A critical implementation detail is that the built-in `bUseLoSHearing` option in `UAISense_Hearing` is unreliable. A robust solution performs an explicit line trace for occlusion from the enemy’s sensing point to the noise origin before updating the blackboard.
+
+### Designing Unpredictability
+
+A deterministic Behaviour Tree structure is desirable because it makes the system debuggable. The unpredictable behaviour should come from randomized parameters, not from random branching logic.
+
+Five parameters are especially useful:
+
+- patrol wait time range;
+- look-around angle variation;
+- sight loss timer range;
+- noise sensitivity multiplier per enemy type;
+- patrol order mode (ordered, ping-pong, random).
+
+Using these variables allows the same underlying tree to produce varied, believable encounters without sacrificing authorial control.
+
+### Tracking, Last-Known Location, and Player Agency
+
+A key design distinction is between live tracking and last-known-location navigation.
+
+While the player is visible, the enemy can track the player’s live world position. When sight is lost, the system should enter a brief scanning phase controlled by a sight-loss timer. After that timer expires, the tree should direct the agent to the last confirmed player position.
+
+This distinction gives the player the opportunity to evade pursuit, and it creates tension in the moment when the enemy is searching rather than instantly acquiring the target.
+
+### Common Implementation Traps
+
+Several practical pitfalls tend to recur in Unreal AI development:
+
+- Perception spam: a single loud event may generate multiple stimuli in one frame, causing repeated blackboard updates and Behaviour Tree restarts. A cooldown decorator and a guarded delegate handler are necessary.
+- Hearing through walls: the default hearing sense is a spherical radius check. Explicit occlusion testing is required to avoid unrealistic through-wall awareness.
+- Wrong Blueprint base class: `UBTTaskNode` will not expose Blueprint task events; use `UBTTask_BlueprintBase` for Blueprint-defined tasks.
+- Priority ordering: if both hearing and sight stimuli occur simultaneously, the selector order in the Behaviour Tree must be arranged so that combat has precedence over investigation.
+
+### Summary of Research Findings
+
+The research indicates that the most appropriate AI architecture depends on the desired player experience. Behaviour Trees are generally the best fit for perception-driven horror and stealth enemies, while GOAP is more appropriate for emergent, planner-driven behaviours. FSMs are still useful for limited, phase-based systems, and State Trees offer a promising hybrid with stronger readability.
+
+For this prototype, the research supports a design strategy that emphasizes deterministic tree structure, explicit sensory occlusion, and variability through parametric randomness. These principles are intended to create an enemy that feels intelligent and reactive without relying on unfair omniscience.
+
 ## Implementation
 
 
